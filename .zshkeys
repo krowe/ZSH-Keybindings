@@ -1,0 +1,142 @@
+#################################
+########## KEYBINDINGS ##########
+
+# Ensure we are in emacs mode
+bindkey -e
+
+# Keybind Helper Functions
+_colr() {
+	read line
+	echo -en "\e[1;$1m$line\e[0m"
+}
+_colrl() {
+	while read line
+	do
+	  echo -e "\e[1;$1m$line\e[0m"
+	  read line
+	  echo -e "\e[1;$2m$line\e[0m"
+	done
+}
+_colorize_mail() {
+    DELIMINATOR=${1:-"-"}
+    CA=${2:-"\e[1;34m"}
+    CB=${3:-"\e[1;30m"}
+	while read line
+	do
+		var1=$(echo $line | cut -f1 -d$DELIMINATOR)
+		var2=$(echo $line | cut -f2- -d$DELIMINATOR)
+		echo -e "$CA$var1$CB$var2\e[0m"
+	done
+}
+
+# Keybind Functions
+_system_status_display() {
+	echo -e "\n`lsb_release -ds|_colr 35` using `uname -o|_colr 35` `uname -r|_colr 35` on a `uname -m|_colr 35` processor."
+	echo -e "Today is `date --rfc-3339=seconds|_colr 32`; up since `uptime -s|_colr 32`."
+	echo -e "Active Users: `w|cut -d ' ' -f 1|grep -v USER|sed '/^$/d'|sort -u|_colrl 34 36|head -c -5|tr '\n' ', '`\e[0m\n"
+	info=$(df -mh)
+	echo $info|head -n 1|_colr 33 && echo && echo $info|tail -n +3|_colrl 34 36
+	info=$(free -mht)
+	echo -n "            " && echo $info|head -n 1|_colr 33 && echo && echo $info|tail -n +2|_colorize_mail ":" "\e[1;33m"
+	zle -R
+	exit
+}
+zle -N _system_status_display
+
+# This requires you to enable the ATOM feed in Gmail. I've also not been able to 
+# get it to work without supplying a password here. You should be able to omit 
+# it and have it ask you for the password.
+_check-gmail() {
+	echo
+	curl -u username:password --silent "https://mail.google.com/mail/feed/atom" | tr -d '\n' |\
+		awk -F '<entry>' '{for (i=2; i<=NF; i++) {print $i}}' |\
+		sed -n "s/<title>\(.*\)<\/title.*name>\(.*\)<\/name>.*/\2 - \1/p" |\
+		_colorize_mail
+	exit
+}
+zle -N _check-gmail
+
+_key_restart() {
+	echo
+	sudo echo
+    echo -e "\e[31m*****************************************"
+	echo -e "** \e[33mYou have pressed the restart button \e[31m**"
+    echo -e "*****************************************\e[0m\n"
+	for i in `seq 1 5`; do
+		echo -e "Press \e[33m^C\e[0m in the next \e[31m$i\e[0m seconds to cancel."
+		sleep 1s
+		sudo -v
+	done  
+	sudo shutdown -r now
+	exit
+}
+zle -N _key_restart
+
+# Binding Definitions
+# Keypad
+# 0 . Enter
+bindkey -s "^[Op" "0"
+bindkey -s "^[Ol" "."
+bindkey -s "^[OM" "^M"
+# 1 2 3
+bindkey -s "^[Oq" "1"
+bindkey -s "^[Or" "2"
+bindkey -s "^[Os" "3"
+# 4 5 6
+bindkey -s "^[Ot" "4"
+bindkey -s "^[Ou" "5"
+bindkey -s "^[Ov" "6"
+# 7 8 9
+bindkey -s "^[Ow" "7"
+bindkey -s "^[Ox" "8"
+bindkey -s "^[Oy" "9"
+# + -  * /
+bindkey -s "^[Ol" "+"
+bindkey -s "^[OS" "-"
+bindkey -s "^[OR" "*"
+bindkey -s "^[OQ" "/"
+
+# Home End PgUp PgDown Del Ins
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" overwrite-mode
+
+# Ctrl+Left Ctrl+Right
+bindkey "^[[D" backward-word
+bindkey "^[[C" forward-word
+
+# F1 - Clear the input buffer
+bindkey -s "^[[11~" "^u"
+ 
+# F2 - Display Unread Email
+bindkey "^[[12~" _check-gmail
+ 
+# F3 - Find
+bindkey -s "^[[13~" "^usudo find / -name "
+ 
+# F4 - New Shell - This is handy when you are testing new keybindings. Remember to eventually exit out though.
+bindkey -s "^[[14~" "^uzsh^M"
+
+# The history search keys allow you to begin typing and then use these to search for other lines like what you've typed.
+# F5 - History Search Up
+bindkey "^[[15~" history-beginning-search-backward
+
+# F6 - History Search Down
+bindkey "^[[17~" history-beginning-search-forward
+
+# F7 - Disk\Mem\Net Status
+bindkey "^[[18~" _system_status_display
+
+# F8 - Restart Machine
+bindkey "^[[19~" _key_restart
+
+# On my keyboard the last 4 function keys are all related to playing music.
+# Because I run in a VM that is not something I need. Also, I may want to use 
+# those in a script someday, so I left them alone.
+
+# The other keys which didn't work are not intercepted by the terminal at all
+# and the host OS receives instead. That is handiest for me as well.
+
