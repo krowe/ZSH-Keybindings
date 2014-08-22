@@ -29,4 +29,4 @@ To configure this you will want to setup the email account in the `_check-gmail(
 :heavy_exclamation_mark: Fix the issue where multiple call to the custom function will not return to the prompt correctly. Just press enter for now when this happens.
 
 
-If you use this and make it better then send me a pull request, please. Anything that might be useful to someone else we can try to include. 
+**If you use this and make it better then send me a pull request.** Anything that might be useful to someone else we can try to include. 
