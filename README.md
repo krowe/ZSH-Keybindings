@@ -24,9 +24,9 @@ To configure this you will want to setup the email account in the `_check-gmail(
 
 :heavy_exclamation_mark: The 3 multimedia keys and calculator button above the keypad haven't been mapped once again because I use this in a VM. In a VM this is the best way to leave them. It would be good to have these available for those who aren't though.
 
-:heavy_exclamation_mark: Remove the password from the `_check-gmail()` function.
+:interrobang: Remove the password from the `_check-gmail()` function.
 
-:heavy_exclamation_mark: Fix the issue where multiple call to the custom function will not return to the prompt correctly. Just press enter for now when this happens.
+:interrobang: Fix the issue where multiple call to the custom function will not return to the prompt correctly. Just press enter for now when this happens.
 
 
-**If you use this and make it better then send me a pull request.** Anything that might be useful to someone else we can try to include. 
+If you use this and make it better then send me a pull request, please. Anything that might be useful to someone else we can try to include. 
