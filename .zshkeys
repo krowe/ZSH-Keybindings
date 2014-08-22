@@ -139,3 +139,4 @@ bindkey "^[[19~" _key_restart
 
 # The other keys which didn't work are not intercepted by the terminal at all
 # and the host OS receives instead. That is handiest for me as well.
+
