@@ -1,13 +1,13 @@
 ZSH Keybindings
 ===============
 
-These are key bindings for *ZSH*. They were made for a Logitech K800 keyboard.
-It may work well on many other keyboards. It certainly won't work perfect for
-everyone. I think there is a way to make it work across all keyboards but I
-decided not to do it that way because it isn't as straight forward and I like
-to be able to easily modify these (relatively speaking). If you'd like to see
-the suggested method, then look at the 
-[wiki page](http://zshwiki.org/home/zle/bindkeys).
+These are key bindings for *ZSH*. They were made for a Logitech K800 keyboard
+on systems running Unbuntu server. It may work well on many other keyboards.
+It certainly won't work perfect for everyone just as it is. I think there is
+a way to make it work across more keyboard types but I decided not to do it
+that way because it isn't as straight forward and I like to be able to easily
+modify these (relatively speaking). If you'd like to see the suggested method,
+then look at the [wiki page](http://zshwiki.org/home/zle/bindkeys).
 
 This works from both the console and Putty for me on the keyboards I have so
 I'm just sticking with the easy way. I wouldn't suggest putting everything
