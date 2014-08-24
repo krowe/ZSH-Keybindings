@@ -1,7 +1,11 @@
 kshrc-k800-keybindings
 ======================
 
-These are fancy *ZSH* key bindings for a Logitech K800 keyboard. It may work well on many other keyboards. It certainly won't work perfect for everyone. I think there is a way to fix that but I decided not to do it that way because it isn't as straight forward and I like to be able to easily modify these (relatively speaking).
+These are fancy *ZSH* key bindings for a Logitech K800 keyboard. It may work well on many other keyboards. It certainly won't work perfect for everyone. I think there is a way to make it work across all keyboards but I decided not to do it that way because it isn't as straight forward and I like to be able to easily modify these (relatively speaking).
+
+If you'd like to se that method then look at the manual: http://zshwiki.org/home/zle/bindkeys
+
+This does work from both the console and Putty for me. I wouldn't suggest putting everything included on your servers. I use these on development machines only. It would probably work fine but I don't like to put any bells and whistles like this on my public servers to ensure that they run smoothly.
 
 
 This is not a complete `~/.zshrc` file, it contains only the key bindings. It is also intended to be edited for your own preferences. Just use what you want and skip what you don't.
