@@ -31,11 +31,11 @@ from cursor.
           <kbd>Num Lock</kbd> key was pressed.
    - **Cursor Keys** - The left and right each move a single character and the 
           up and down navigate the history. Use <kbd>Ctrl</kbd> + 
-          <kbd>Left</kbd> and <kbd>Ctrl</kbd> + <kbd>right</kbd> to jump whole
+          <kbd>Left</kbd> and <kbd>Ctrl</kbd> + <kbd>Right</kbd> to jump whole
           words.
    - **Ins,Del,Home,End,PgUp,PgDn** - These work as they should. 
-          <kbd>Page Up</kbd>\<kbd>Page Down</kbd> moves to the beggining and 
-          end of the history respectively.
+          <kbd>Page Up</kbd> and <kbd>Page Down</kbd> moves to the beggining
+          and end of the history respectively.
    - **F1** - This clears the current input.
    - **F2** - This displays unread Gmail messages.
    - **F3** - Inserts the start of a basic find command to the current line.
