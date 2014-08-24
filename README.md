@@ -1,5 +1,5 @@
-kshrc-k800-keybindings
-======================
+ZSH Keybindings
+===============
 
 These are fancy *ZSH* key bindings for a Logitech K800 keyboard. It may work 
 well on many other keyboards. It certainly won't work perfect for everyone. I 
