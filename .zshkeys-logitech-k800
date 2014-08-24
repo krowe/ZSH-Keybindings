@@ -78,24 +78,24 @@ _system_status_display() {
 		echo
 		if [ -f "/etc/init.d/apache2" ]; then
 			if [[ `service apache2 status` == *running* ]]; then
-				echo -en "\e[32m*\e[0m \e[33mApache 2\e[0m is \e[32mrunning\e[0m"
+				echo -en "\e[32m*\e[0m \e[33mApache 2\e[0m is \e[32mrunning.\e[0m"
 			else
-				echo -en "\e[39m*\e[0m \e[33mApache 2\e[0m is \e[31mstopped\e[0m"
+				echo -en "\e[39m*\e[0m \e[33mApache 2\e[0m is \e[31mstopped.\e[0m"
 			fi
-			echo -e ", sites enabled: `ls /etc/apache2/sites-enabled|sed 's/.conf//'|_colrl 34 36|tr '\n' ','|sed -e 's/,$//'`\e[0m"
+			echo -e " Sites: `ls /etc/apache2/sites-enabled|sed 's/.conf//'|_colrl 34 36|tr '\n' ','|sed -e 's/,$//'`\e[0m"
 		else
 			echo -e "\e[35m*\e[0m \e[33mApache 2\e[0m doesn't apear to be installed."
 		fi
 		if [ -f "/etc/init.d/mysql" ]; then
 			if [[ `service mysql status` == *running* ]]; then
 				echo -en "\e[32m*\e[0m \e[33mMySQL\e[0m is \e[32mrunning\e[0m. "
+				if [[ -f ~/.my.cnf  && -e /usr/bin/mysqladmin ]]; then
+				   /usr/bin/mysqladmin status|sed 's/: /:/g'|sed 's/  / /g'|sed 's/Uptime/Up/'|sed 's/Threads/Th/'|sed 's/Questions/Qu/'|sed 's/Slow queries/SQ/'|sed 's/Opens/Op/'|sed 's/Flush tables/FT/'|sed 's/Open tables/OT/'|sed 's/Queries per second avg/QPS/'
+				else
+				   echo -e " Create a '~/.my.cnf' file in order to show stats."
+				fi
 			else
-				echo -en "\e[31m*\e[0m \e[33mMySQL\e[0m is \e[31mstopped\e[0m. "
-			fi
-			if [[ -f ~/.my.cnf  && -e /usr/bin/mysqladmin ]]; then
-			   /usr/bin/mysqladmin status|sed 's/: /:/g'|sed 's/  / /g'|sed 's/Uptime/Up/'|sed 's/Threads/Th/'|sed 's/Questions/Qu/'|sed 's/Slow queries/SQ/'|sed 's/Opens/Op/'|sed 's/Flush tables/FT/'|sed 's/Open tables/OT/'|sed 's/Queries per second avg/QPS/'
-			else
-			   echo -e " Create a '~/.my.cnf' file in order to show stats."
+				echo -e "\e[31m*\e[0m \e[33mMySQL\e[0m is \e[31mstopped\e[0m."
 			fi
 		else
 			echo -e "\e[35m*\e[0m \e[33mMySQL\e[0m doesn't apear to be installed."
@@ -106,18 +106,55 @@ zle -N _system_status_display
 
 # This will restart the system.
 _key_restart() {
-	echo
-	echo -e "\a\e[31m****************************************"
-	echo -e "** \e[33mYou have pressed the reboot button \e[31m**"
-	echo -e "****************************************\e[0m"
-	for i in {5..1}; do
-		echo -en "\nPress \e[33m^C\e[0m in the next \e[31m$i\e[0m seconds to cancel"
-		sleep 1s
-	done
-	echo
-	sudo /sbin/reboot
+	_key_shutdown_base reboot
 }
 zle -N _key_restart
+
+# This will shutdown the system.
+_key_shutdown() {
+	_key_shutdown_base
+}
+zle -N _key_shutdown
+
+# This just remind me that this button is useless.
+_key_numlock() {
+	zle -I 
+	(
+		echo -e "Num Lock Pressed\a"
+	) < /dev/tty
+}
+zle -N _key_numlock
+
+# These allow the F9 and F10 keys to work without loosing your place.
+_key_service_mysql_stop() {
+	zle -I 
+	(
+		sudo service mysql stop
+	) < /dev/tty
+}
+zle -N _key_service_mysql_stop
+_key_service_mysql_restart() {
+	zle -I 
+	(
+		sudo service mysql restart
+	) < /dev/tty
+}
+zle -N _key_service_mysql_restart
+
+_key_service_apache_stop() {
+	zle -I 
+	(
+		sudo service apache2 stop
+	) < /dev/tty
+}
+zle -N _key_service_apache_stop
+_key_service_apache_restart() {
+	zle -I 
+	(
+		sudo service apache2 restart
+	) < /dev/tty
+}
+zle -N _key_service_apache_restart
 
 
 ###################
@@ -159,58 +196,63 @@ bindkey "^[[D" backward-word
 bindkey "^[[C" forward-word
 
 # F1 - Clear the input buffer
-bindkey -s "^[[11~" "^u"
- 
-# F2 - Display Unread Email
-bindkey "^[[12~" _check-gmail
- 
-# F3 - Find
-bindkey -s "^[[13~" "^ufind / -name  2> /dev/null^b^b^b^b^b^b^b^b^b^b^b^b^b"
+bindkey "^[[11~" kill-buffer
 
-# F4 - New Shell - This is handy when you are testing new keybindings. Remember
-#                  to eventually exit out though.
-bindkey -s "^[[14~" "^uzsh^M"
+# F2 \ Shift+F2 - Display Unread Email \ Show New Facebook Posts
+bindkey "^[[12~" _check-gmail
+
+# F3 \ Shift+F3 - Locate \ Find
+bindkey -s "^[[13~" "^ulocate "
+bindkey -s "^[[25~" "^ufind / -name  2> /dev/null^b^b^b^b^b^b^b^b^b^b^b^b^b"
+
+# F4 \ Shift+F4 - zsh shell \ exit shell
+bindkey -s "^[[14~" "^uecho 'Shell Depth: `expr $SHLVL + 1`' && zsh^M"
+bindkey -s "^[[26~" "^uecho 'Shell Depth: `expr $SHLVL - 1`' && exit^M"
 
 # The history search keys allow you to begin typing and then use these to search
 # for other lines like what you've typed.
-# F5 - History Search Up
+# F5 \ Shift F5 - History Search Up \ History Search Down
 bindkey "^[[15~" history-beginning-search-backward
+bindkey "^[[28~" history-beginning-search-forward
 
-# F6 - History Search Down
-bindkey "^[[17~" history-beginning-search-forward
+# F6 - Repeat last command using sudo this time \ Switch to super user
+bindkey -s "^[[17~" "^usudo !!^M"
+bindkey -s "^[[29~" "^usu -^M"
 
-# F7 - Disk\Mem\Net Status
+# F7 \ Shift + F7 - Disk,Mem,Net Status \ ps -aux|grep 
 bindkey "^[[18~" _system_status_display
+bindkey -s "^[[31~" "^ups -aux|grep "
 
-# F8 - Restart Machine
+# F8 \ Shift + F8 - Restart Machine
 bindkey "^[[19~" _key_restart
+bindkey "^[[32~" _key_shutdown
 
 # On my keyboard the last 4 function keys are all related to playing music.
 # Because I run in a VM that is not something I needed. What I could use are
 # keys for controlling my two main services. Maybe not the best use of these 
 # keys but until I think of something better to use them for, it'll do.
 
-# F9 - Stop MySQL
-bindkey -s "^[[20~" "^usudo service mysql stop^M"
+# F9\Shift F9 - MySQL Restart\Stop
+bindkey "^[[20~" _key_service_mysql_restart
+bindkey "^[[33~" _key_service_mysql_stop
 
-# F10 - Restart MySQL
-bindkey -s "^[[21~" "^usudo service mysql restart^M"
+# F10\Shift F10 - Apache 2 Restart\Stop
+bindkey "^[[21~" _key_service_apache_restart
+bindkey "^[[34~" _key_service_apache_stop
 
-# F11 - Stop Apache 2
-bindkey -s "^[[23~" "^usudo service apache2 stop^M"
+# My keyboard doesn't allow shift modifiers for the F11 and F12 keys whats more,
+# the same as Shift+F1 and Shift+F2 are exactly the same keys as F11 and F12.
+# With this in mind I've selected (hopefully) complimentary tasks for these keys.
 
-# F12 - Restart Apache 2
-bindkey -s "^[[24~" "^usudo service apache2 restart^M"
+# F11 - Delete Current Word Under the Cursor
+bindkey "^[[23~" kill-word
 
-# I don't actually bind this key because my keyboard has an annoying ISD that
-# comes up when I press it and I'd like it to work right someday but AFAIK there
-# is no way to fire an event every keypad press to check for the state and it is
-# not reliable to depend on only those key presses which occur in the SSH 
-# window to create a toggle because if it is pressed outside the window it won't
-# happen here.
-# NumLock - Restart Networking
-bindkey -s "^[OP" "^uecho Num Lock Pressed^M"
+# F12 - Clear the Screen
+bindkey "^[[24~" clear-screen
 
+# I don't actually use this key myself but maybe you will.
+# NumLock - Network Information
+bindkey -s "^[[OP~" "^unetstat -a^M"
 
 # The other keys which didn't work are not intercepted by the terminal at all
 # and the host OS receives instead. That is handiest for me as well.
@@ -243,4 +285,18 @@ _colorize_mail() {
 		var2=$(echo $line | cut -f2- -d$DELIMINATOR)
 		echo -e "$CA$var1$CB$var2\e[0m"
 	done
+}
+_key_shutdown_base() {
+	name=${1:-"shut down"}
+	cmdname=${1:-"poweroff"}
+	if [[ "$name" == "reboot" ]]; then name=" restart "; fi
+	echo -e "\a\n\e[31m*******************************************"
+	echo -e "** \e[33mYou have pressed the $name button \e[31m**"
+	echo -e "*******************************************\e[0m"
+	for i in {5..1}; do
+		echo -en "\nPress \e[33m^C\e[0m in the next \e[31m$i\e[0m seconds to cancel"
+		sleep 1s
+	done
+	echo
+	sudo /sbin/$cmdname
 }
