@@ -33,8 +33,6 @@ _colorize_mail() {
 _system_status_display() {
 	zle -I 
 	(
-		s=$(stty -g)  # Store terminal settings
-		stty sane     # Reset terminal settings
 		echo -e "`lsb_release -ds|_colr 35` using `uname -o|_colr 35` `uname -r|_colr 35` on a `uname -m|_colr 35` processor."
 		echo -e "Today is `date --rfc-3339=seconds|_colr 32`; up since `uptime -s|_colr 32`."
 		echo -e "Active Users: `w|cut -d ' ' -f 1|grep -v USER|sed '/^$/d'|sort -u|_colrl 34 36|head -c -5|tr '\n' ', '`\e[0m\n"
@@ -42,36 +40,30 @@ _system_status_display() {
 		echo $info|head -n 1|_colr 33 && echo && echo $info|tail -n +3|_colrl 34 36
 		info=$(free -mht)
 		echo -n "            " && echo $info|head -n 1|_colr 33 && echo && echo $info|tail -n +2|_colorize_mail ":" "\e[1;33m"
-		stty $s       # Restore terminal settings
 	) < /dev/tty
 }
 zle -N _system_status_display
 
-# EmailID below should be replaced with your email ID (the portion of your email before 
-# the @ sign). This requires you to enable the ATOM feed in Gmail. If you don't know what 
-# that is then go ahead and try this and let it fail. There will then be a message in 
-# your inbox you can read with instruction on how to enable it. 
+# This requires you to enable the ATOM feed in Gmail. If you don't know what that is then
+# go ahead and try this and let it fail. There will then be a message in your inbox you
+# can read with instruction on how to enable it. EmailID below should be replaced with 
+# your email ID (the portion of your email before the @ sign).
 _check-gmail() {
-  zle -I 
-  (
-    s=$(stty -g) #Store terminal settings
-    stty sane  # Reset terminal settings
-    curl -u EmailID --silent "https://mail.google.com/mail/feed/atom" |
-     tr -d '\n' | awk -F '<entry>' '{for (i=2; i<=NF; i++) {print $i}}' |
-     sed -n "s/<title>\(.*\)<\/title.*name>\(.*\)<\/name>.*/\2 - \1/p"|\
-	_colorize_mail
-    stty $s   # Restore terminal settings
-  ) < /dev/tty
+	zle -I 
+	(
+		curl -u EmailID --silent "https://mail.google.com/mail/feed/atom" |
+			tr -d '\n' | awk -F '<entry>' '{for (i=2; i<=NF; i++) {print $i}}' |
+			sed -n "s/<title>\(.*\)<\/title.*name>\(.*\)<\/name>.*/\2 - \1/p"  |
+			_colorize_mail
+	) < /dev/tty
 }
 zle -N _check-gmail
 
 _key_restart() {
 	zle -I 
 	(
-		s=$(stty -g) #Store terminal settings
-		stty sane    # Reset terminal settings
 		echo
-		echo -e "\e[31m****************************************"
+		echo -e "\a\e[31m****************************************"
 		echo -e "** \e[33mYou have pressed the reboot button \e[31m**"
 		echo -e "****************************************\e[0m\n"
 		for i in {5..1}; do
@@ -79,7 +71,6 @@ _key_restart() {
 			sleep 1s
 		done  
 		sudo reboot
-		stty $s      # Restore terminal settings
 	) < /dev/tty
 }
 zle -N _key_restart
@@ -150,5 +141,4 @@ bindkey "^[[19~" _key_restart
 # those in a script someday, so I left them alone.
 
 # The other keys which didn't work are not intercepted by the terminal at all
-# and the host OS receives instead. That is handiest for me as anyway because
-# they are media keys.
+# and the host OS receives instead. That is handiest for me as well.
