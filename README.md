@@ -37,7 +37,7 @@ You may either append this to your `~/.zshrc` file or you may `source` it from
 there.
 
 To configure this you will want to setup the email account in the 
-`_check-gmail()` function. Replace `userID` with the portion of 
+`_check-gmail()` function. Replace `EmailID` with the portion of 
 your Gmail email address which precedes the `@` symbol. 
 
 ## Limitations ##
