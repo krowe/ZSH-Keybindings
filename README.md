@@ -27,9 +27,9 @@ don't really apply here I've mapped them to search history from cursor.
 ## Downloading ##
 
 You only need the keymap for your keyboard. Currently, that is just the 
-`.zshrc_reference` file in this repository. The `.zshcr_reference` file
-is not needed but may be useful to you if you want to see the other settings
-I use.
+`.zshkeys-logitech-k800` file in this repository but I'll add more if I make
+or get them. The `.zshcr_reference` file is not needed but may be useful to 
+you if you want to see the other settings I use.
 
 ## Configuration ##
 
