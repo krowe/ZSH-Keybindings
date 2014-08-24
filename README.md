@@ -24,6 +24,12 @@ skip what you don't.
 This uses `Ctrl+Arrow` keys to jump through words. Because the brightness keys 
 don't really apply here I've mapped them to search history from cursor.
 
+## Downloading ##
+
+You only need the keymap for your keyboard. Currently, that is just the 
+`.zshrc_reference` file in this repository. The `.zshcr_reference` file
+is not needed but may be useful to you if you want to see the other settings
+I use.
 
 ## Configuration ##
 
@@ -33,7 +39,6 @@ there.
 To configure this you will want to setup the email account in the 
 `_check-gmail()` function. Replace `userID` with the portion of 
 your Gmail email address which precedes the `@` symbol. 
-
 
 ## Limitations ##
 
