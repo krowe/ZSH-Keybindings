@@ -55,7 +55,9 @@ you if you want to see the other settings I use.
 ## Configuration ##
 
 You may either append this to your `~/.zshrc` file or you may `source` it from 
-there.
+there. This should make the majority of the keys work for most people (even if
+they are using different keyboards). Two of the keys need a little more work to
+get working.
 
 ### The Email Key ###
 
