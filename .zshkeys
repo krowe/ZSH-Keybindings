@@ -47,10 +47,10 @@ _system_status_display() {
 }
 zle -N _system_status_display
 
-# This requires you to enable the ATOM feed in Gmail. If you don't know what that is then
-# go ahead and try this and let it fail. There will then be a message in your inbox you
-# can read with instruction on how to enable it. EmailID below should be replaced with 
-# your email ID (the portion of your email before the @ sign).
+# EmailID below should be replaced with your email ID (the portion of your email before 
+# the @ sign). This requires you to enable the ATOM feed in Gmail. If you don't know what 
+# that is then go ahead and try this and let it fail. There will then be a message in 
+# your inbox you can read with instruction on how to enable it. 
 _check-gmail() {
   zle -I 
   (
@@ -150,4 +150,5 @@ bindkey "^[[19~" _key_restart
 # those in a script someday, so I left them alone.
 
 # The other keys which didn't work are not intercepted by the terminal at all
-# and the host OS receives instead. That is handiest for me as well.
+# and the host OS receives instead. That is handiest for me as anyway because
+# they are media keys.
