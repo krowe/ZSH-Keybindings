@@ -20,10 +20,6 @@ This is not a complete `~/.zshrc` file, it contains only the key bindings. It
 is also intended to be edited for your own preferences. Just use what you want
 and skip what you don't.
 
-This uses <kbd>Ctrl</kbd>+<kbd>Arrow</kbd> keys to jump through words. Because 
-the brightness keys don't really apply here I've mapped them to search history 
-from cursor.
-
 ### Key Mappings ###
  - The key modifications which this script makes are the following:
    - **Numpad** - These are mapped to the keys which they would be if the 
