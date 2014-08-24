@@ -7,7 +7,7 @@ think there is a way to make it work across all keyboards but I decided not to
 do it that way because it isn't as straight forward and I like to be able to 
 easily modify these (relatively speaking).
 
-If you'd like to see the suggested method, then look at the manual:
+If you'd like to see the suggested method, then look at the wiki:
 http://zshwiki.org/home/zle/bindkeys
 
 This works from both the console and Putty for me on the keyboards I have so
