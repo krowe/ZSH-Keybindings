@@ -7,43 +7,47 @@ think there is a way to make it work across all keyboards but I decided not to
 do it that way because it isn't as straight forward and I like to be able to 
 easily modify these (relatively speaking).
 
-If you'd like to see that method then look at the manual: 
+If you'd like to see the suggested method, then look at the manual:
 http://zshwiki.org/home/zle/bindkeys
 
-This does work from both the console and Putty for me on the keyboards I have. 
-I wouldn't suggest putting everything included on your servers. I use these on 
-development machines only. It would probably work fine but I don't like to put 
-any bells and whistles like this on my public servers to ensure that they run 
-smoothly.
+This works from both the console and Putty for me on the keyboards I have so
+I'm just sticking with the easy way. I wouldn't suggest putting everything
+included on your servers. I use these on sevelopment machines only. It would
+probably work fine but I don't like to put any bells and whistles like this 
+on my public servers to ensure that they run smoothly.
 
 
 This is not a complete `~/.zshrc` file, it contains only the key bindings. It is
 also intended to be edited for your own preferences. Just use what you want and 
 skip what you don't.
 
-This uses `Ctrl+Arrow` keys to jump through words. Because the brightness keys 
-don't really apply here I've mapped them to search history from cursor.
+This uses <kbd>Ctrl</kbd>+<kbd>Arrow</kbd> keys to jump through words. Because 
+the brightness keys don't really apply here I've mapped them to search history 
+from cursor.
 
 ### Key Mappings ###
  - The key modifications which this script makes are the following:
-   - **Numpad** - These are mapped to the keys which they would be if the numlock key
-           was pressed.
-   - **Cursor Keys** - The left and right each move a single character and the up and
-                   down navigate the history. Use ctrl+left\right to jump whole 
-                   words.
-   - **Ins,Del,Home,End,PgUp,PgDn** - These work as they should. PgUp\Down moves to the
-                                  beggining and end of the history respectively.
+   - **Numpad** - These are mapped to the keys which they would be if the 
+          <kbd>Num Lock</kbd> key was pressed.
+   - **Cursor Keys** - The left and right each move a single character and the 
+          up and down navigate the history. Use <kbd>Ctrl</kbd> + 
+          <kbd>Left</kbd> and <kbd>Ctrl</kbd> + <kbd>right</kbd> to jump whole
+          words.
+   - **Ins,Del,Home,End,PgUp,PgDn** - These work as they should. 
+          <kbd>Page Up</kbd>\<kbd>Page Down</kbd> moves to the beggining and 
+          end of the history respectively.
    - **F1** - This clears the current input.
-   - **F2** - This displays unread Gmail.
+   - **F2** - This displays unread Gmail messages.
    - **F3** - Inserts the start of a basic find command to the current line.
    - **F4** - Spawns a new ZSH shell.
-   - **F5** - History search up. Begin typing and this will search the history for
-          another command which started the same way.
-   - **F6** - History search down. This allows you to go back when performing the
-          history search.
+   - **F5** - History search up. Begin typing and this will search the history 
+          for another command which started the same way.
+   - **F6** - History search down. This allows you to go back when performing 
+          the history search.
    - **F7** - Displays various system information.
-   - **F8** - Restart the system. There is a 5 second countdown first which gives you
-          time to cancel.
+   - **F8** - Restart the system. There is a 5 second countdown first which 
+              gives you time to cancel (<kbd>Ctrl</kbd>+<kbd>C</kbd>). Oh ya,
+              it beeps once in order to make sure you notice it.
 
 
 ## Downloading ##
