@@ -68,12 +68,12 @@ your Gmail email address which precedes the `@` symbol.
 
 ## Limitations ##
 
-:heavy_exclamation_mark: Currently the `scroll lock` key is not supported. The 
+:heavy_exclamation_mark: Currently the <kbd>Scroll Lock</kbd> key is not supported. The 
 keypad will always be numerical. I prefer this myself because it always annoys 
 me when I switch accidentally. That's also why I really needed the other 
 buttons to work though.
 
-:heavy_exclamation_mark: Keys F9-F12 do nothing. I'm in a 
+:heavy_exclamation_mark: Keys <kbd>F9</kbd>-<kbd>F12</kbd> do nothing. I'm in a 
 [VM](http://en.wikipedia.org/wiki/Virtual_machine "VM") and there is no need 
 for multimedia keys so I haven't remapped them at all. It would be good to 
 have these available for those who aren't though. Or to think of other good 
