@@ -11,7 +11,7 @@ the suggested method, then look at the
 
 This works from both the console and Putty for me on the keyboards I have so
 I'm just sticking with the easy way. I wouldn't suggest putting everything
-included on your servers. I use these on sevelopment machines only. It would
+included on your servers. I use these on development machines only. It would
 probably work fine but I don't like to put any bells and whistles like this 
 on my public servers to ensure that they run smoothly.
 
