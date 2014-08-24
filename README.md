@@ -56,14 +56,38 @@ You only need the keymap for your keyboard. Currently, that is just the
 or get them. The `.zshcr_reference` file is not needed but may be useful to 
 you if you want to see the other settings I use.
 
+
 ## Configuration ##
 
 You may either append this to your `~/.zshrc` file or you may `source` it from 
 there.
 
-To configure this you will want to setup the email account in the 
-`_check-gmail()` function. Replace `EmailID` with the portion of 
-your Gmail email address which precedes the `@` symbol. 
+### The Email Key ###
+
+The email key needs special attention to make work. To configure this you will
+want to setup the email account in the `_check-gmail()` function. Replace
+`EmailID` with the portion of your Gmail email address which precedes the 
+<kbd>@</kbd> symbol.
+
+This also requires that you to enable the ATOM feed in Gmail. If you don't know 
+what that is then go ahead and try this and let it fail. There will then be a 
+message in your inbox. This message will have instructions on how to enable it. 
+
+### Sudo ###
+
+Two of the keys rely on *sudo*. If you do not use *sudo* then you'll want to 
+modify the scripts for them to work for you without it. If you do use *sudo*
+then there is a small modification you'll want to make to your *visudo* file.
+To do this type, `sudo visudo` at the command line. Then add something similar
+to the following:
+
+      username   ALL=(ALL) NOPASSWD: /sbin/reboot
+
+Where `username` is replaced by you actual Linux user name. This will allow the
+user specified to reboot the computer without a password. Once you do this, you
+should be extra careful about accidentally running reboot because it'll just
+work. It isn't a problem for me because I usually use `shutdown -r now` myself.
+
 
 ## Limitations ##
 
