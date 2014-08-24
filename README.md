@@ -1,13 +1,12 @@
 ZSH Keybindings
 ===============
 
-These are fancy *ZSH* key bindings for a Logitech K800 keyboard. It may work 
-well on many other keyboards. It certainly won't work perfect for everyone. I 
-think there is a way to make it work across all keyboards but I decided not to 
-do it that way because it isn't as straight forward and I like to be able to 
-easily modify these (relatively speaking).
-
-If you'd like to see the suggested method, then look at the 
+These are key bindings for *ZSH*. They were made for a Logitech K800 keyboard.
+It may work well on many other keyboards. It certainly won't work perfect for
+everyone. I think there is a way to make it work across all keyboards but I
+decided not to do it that way because it isn't as straight forward and I like
+to be able to easily modify these (relatively speaking). If you'd like to see
+the suggested method, then look at the 
 [wiki page](http://zshwiki.org/home/zle/bindkeys).
 
 This works from both the console and Putty for me on the keyboards I have so
@@ -17,9 +16,9 @@ probably work fine but I don't like to put any bells and whistles like this
 on my public servers to ensure that they run smoothly.
 
 
-This is not a complete `~/.zshrc` file, it contains only the key bindings. It is
-also intended to be edited for your own preferences. Just use what you want and 
-skip what you don't.
+This is not a complete `~/.zshrc` file, it contains only the key bindings. It
+is also intended to be edited for your own preferences. Just use what you want
+and skip what you don't.
 
 This uses <kbd>Ctrl</kbd>+<kbd>Arrow</kbd> keys to jump through words. Because 
 the brightness keys don't really apply here I've mapped them to search history 
@@ -68,20 +67,20 @@ your Gmail email address which precedes the `@` symbol.
 
 ## Limitations ##
 
-:heavy_exclamation_mark: Currently the <kbd>Scroll Lock</kbd> key is not supported. The 
-keypad will always be numerical. I prefer this myself because it always annoys 
-me when I switch accidentally. That's also why I really needed the other 
-buttons to work though.
+:heavy_exclamation_mark: Currently the <kbd>Scroll Lock</kbd> key is not
+supported. The keypad will always be numerical. I prefer this myself because
+it always annoys me when I switch accidentally. That's also why I really
+needed the other buttons to work though.
 
-:heavy_exclamation_mark: Keys <kbd>F9</kbd>-<kbd>F12</kbd> do nothing. I'm in a 
-[VM](http://en.wikipedia.org/wiki/Virtual_machine "VM") and there is no need 
-for multimedia keys so I haven't remapped them at all. It would be good to 
-have these available for those who aren't though. Or to think of other good 
-things to do with them.
+:heavy_exclamation_mark: Keys <kbd>F9</kbd>-<kbd>F12</kbd> do nothing. I'm
+in a [VM](http://en.wikipedia.org/wiki/Virtual_machine "VM") and there is
+no need for multimedia keys so I haven't remapped them at all. It would be
+good to have these available for those who aren't though. Or to think of
+other good things to do with them.
 
-:heavy_exclamation_mark: The 3 multimedia keys and calculator button above the 
-keypad haven't been mapped once again because I use this in a VM. In a VM this 
-is the best way to leave them.
+:heavy_exclamation_mark: The 3 multimedia keys and calculator button above
+the keypad haven't been mapped once again because I use this in a VM. In a
+VM this is the best way to leave them.
 
 If you use this and make it better then send me a pull request, please. 
 Anything that might be useful to someone else we can try to include. 
