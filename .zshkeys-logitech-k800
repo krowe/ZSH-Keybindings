@@ -186,7 +186,31 @@ bindkey "^[[18~" _system_status_display
 bindkey "^[[19~" _key_restart
 
 # On my keyboard the last 4 function keys are all related to playing music.
-# Because I run in a VM that is not something I needed. 
+# Because I run in a VM that is not something I needed. What I could use are
+# keys for controlling my two main services. Maybe not the best use of these 
+# keys but until I think of something better to use them for, it'll do.
+
+# F9 - Stop MySQL
+bindkey -s "^[[20~" "^usudo service mysql stop^M"
+
+# F10 - Restart MySQL
+bindkey -s "^[[21~" "^usudo service mysql restart^M"
+
+# F11 - Stop Apache 2
+bindkey -s "^[[23~" "^usudo service apache2 stop^M"
+
+# F12 - Restart Apache 2
+bindkey -s "^[[24~" "^usudo service apache2 restart^M"
+
+# I don't actually bind this key because my keyboard has an annoying ISD that
+# comes up when I press it and I'd like it to work right someday but AFAIK there
+# is no way to fire an event every keypad press to check for the state and it is
+# not reliable to depend on only those key presses which occur in the SSH 
+# window to create a toggle because if it is pressed outside the window it won't
+# happen here.
+# NumLock - Restart Networking
+bindkey -s "^[OP" "^uecho Num Lock Pressed^M"
+
 
 # The other keys which didn't work are not intercepted by the terminal at all
 # and the host OS receives instead. That is handiest for me as well.
