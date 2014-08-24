@@ -71,10 +71,13 @@ message in your inbox. This message will have instructions on how to enable it.
 
 ### Sudo ###
 
-Two of the keys rely on *sudo*. If you do not use *sudo* then you'll want to 
-modify the scripts for them to work for you without it. If you do use *sudo*
-then there is a small modification you'll want to make to your *visudo* file.
-To do this type, `sudo visudo` at the command line. Then add something similar
+Two of the keys rely on *sudo* (Search <kbd>F3</kbd> and Restart <kbd>F5</kbd>).
+If you do not use *sudo* then you'll want to modify the scripts for them to work
+for you without it.
+
+If you do use *sudo* then there is a small modification
+you'll want to make to your *visudo* file. To do this type, `sudo visudo` at the
+command line. Then add something similar
 to the following:
 
       username   ALL=(ALL) NOPASSWD: /sbin/reboot
