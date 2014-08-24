@@ -198,7 +198,7 @@ bindkey "^[[C" forward-word
 # F1 - Clear the input buffer
 bindkey "^[[11~" kill-buffer
 
-# F2 \ Shift+F2 - Display Unread Email \ Show New Facebook Posts
+# F2 - Display Unread Email
 bindkey "^[[12~" _check-gmail
 
 # F3 \ Shift+F3 - Locate \ Find
@@ -223,7 +223,7 @@ bindkey -s "^[[29~" "^usu -^M"
 bindkey "^[[18~" _system_status_display
 bindkey -s "^[[31~" "^ups -aux|grep "
 
-# F8 \ Shift + F8 - Restart Machine
+# F8 \ Shift + F8 - Restart Machine \ Shutdown Machine
 bindkey "^[[19~" _key_restart
 bindkey "^[[32~" _key_shutdown
 
