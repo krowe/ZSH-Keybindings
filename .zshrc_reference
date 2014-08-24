@@ -84,4 +84,4 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-source ~/.zshkeys
+source ~/.zshkeys-logitech-k800
