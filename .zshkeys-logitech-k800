@@ -27,7 +27,7 @@ EmailID="YourEmailID"
 # then you'll need to edit your visudo file (sudo visudo) and add the following
 # near the end:
 
-## username   ALL=(ALL) NOPASSWD: /sbin/reboot
+## username   ALL=(ALL) NOPASSWD: /sbin/reboot, /sbin/poweroff
 
 # Where username is you linux login name.
 
