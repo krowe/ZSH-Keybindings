@@ -80,9 +80,10 @@ Then add something similar to the following:
       username   ALL=(ALL) NOPASSWD: /sbin/reboot
 
 Where `username` is replaced by you actual Linux user name. This will allow the
-user specified to reboot the computer without a password. Once you do this, you
-should be extra careful about accidentally running reboot because it'll just
-work. It isn't a problem for me because I usually use `shutdown -r now` myself.
+user specified to reboot the computer without a password. This must be placed
+near the end of the file to work. Once you do this, you should be extra careful
+about accidentally running reboot because it'll just work. It isn't a problem
+for me because I usually use `shutdown -r now` myself.
 
 
 ## Limitations ##
