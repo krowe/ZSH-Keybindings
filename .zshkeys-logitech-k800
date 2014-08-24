@@ -13,7 +13,7 @@
 EmailID="YourEmailID"
 
 # If you'd like to see advanced MySQL stats when you press F7 then ensure that
-# mysqladmin is installed and make a new file in your home directory called:
+# mysqladmin is installed (`apt-get install mysql-admin`) and make a new file in your home directory called:
 # ~/.my.cnf which contins the following information:
 
 ## [client]
@@ -23,13 +23,13 @@ EmailID="YourEmailID"
 
 # This will provide default information for mysql clients including mysqladmin.
 
-# If you would like to use the system restart command without typing a password
-# then you'll need to edit your visudo file (sudo visudo) and add the following
-# near the end:
+# If you would like to use the system restart and shutdown commands without 
+# typing a password (which works best with this) then you'll need to edit your
+# visudo file (sudo visudo) and add the following near the end:
 
 ## username   ALL=(ALL) NOPASSWD: /sbin/reboot, /sbin/poweroff
 
-# Where username is you linux login name.
+# Replacing username with your linux login name.
 
 # To use different keys than are defined you'll need to scroll down to where it 
 # says, 'Bind Definitions' later in this file.
