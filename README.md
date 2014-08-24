@@ -59,10 +59,10 @@ there.
 
 ### The Email Key ###
 
-The email key needs special attention to make work. To configure this you will
-want to setup the email account in the `_check-gmail()` function. Replace
-`EmailID` with the portion of your Gmail email address which precedes the 
-<kbd>@</kbd> symbol.
+The Email (<kbd>F2</kbd> key) script needs special attention to make work. To
+configure this you will want to setup the email account in the `_check-gmail()`
+function. Replace `EmailID` with the portion of your Gmail email address which
+precedes the <kbd>@</kbd> symbol.
 
 This also requires that you to enable the ATOM feed in Gmail. If you don't know 
 what that is then go ahead and try this and let it fail. There will then be a 
@@ -70,8 +70,9 @@ message in your inbox. This message will have instructions on how to enable it.
 
 ### The Restart Key ###
 
-The Restart <kbd>F5</kbd> script relies on *sudo*. If you do not use *sudo*
-then you'll want to modify the scripts for them to work for you without it.
+The Restart (<kbd>F5</kbd> key) script relies on *sudo*. If you do not use
+*sudo* then you'll want to modify the scripts for them to work for you without
+it.
 
 If you do use *sudo* then there is a small modification you'll want to make
 to your *visudo* file. To do this type, `sudo visudo` at the command line.
