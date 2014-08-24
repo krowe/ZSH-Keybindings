@@ -24,6 +24,28 @@ skip what you don't.
 This uses `Ctrl+Arrow` keys to jump through words. Because the brightness keys 
 don't really apply here I've mapped them to search history from cursor.
 
+### Key Mappings ###
+ - The key modifications which this script makes are the following:
+   - **Numpad** - These are mapped to the keys which they would be if the numlock key
+           was pressed.
+   - **Cursor Keys** - The left and right each move a single character and the up and
+                   down navigate the history. Use ctrl+left\right to jump whole 
+                   words.
+   - **Ins,Del,Home,End,PgUp,PgDn** - These work as they should. PgUp\Down moves to the
+                                  beggining and end of the history respectively.
+   - **F1** - This clears the current input.
+   - **F2** - This displays unread Gmail.
+   - **F3** - Inserts the start of a basic find command to the current line.
+   - **F4** - Spawns a new ZSH shell.
+   - **F5** - History search up. Begin typing and this will search the history for
+          another command which started the same way.
+   - **F6** - History search down. This allows you to go back when performing the
+          history search.
+   - **F7** - Displays various system information.
+   - **F8** - Restart the system. There is a 5 second countdown first which gives you
+          time to cancel.
+
+
 ## Downloading ##
 
 You only need the keymap for your keyboard. Currently, that is just the 
