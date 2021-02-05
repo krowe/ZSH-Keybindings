@@ -106,13 +106,24 @@ zle -N _system_status_display
 
 # This will restart the system.
 _key_restart() {
-	_key_shutdown_base reboot
+	_key_shutdown reboot
 }
 zle -N _key_restart
 
 # This will shutdown the system.
 _key_shutdown() {
-	_key_shutdown_base
+	name=${1:-"shut down"}
+	cmdname=${1:-"poweroff"}
+	if [[ "$name" == "reboot" ]]; then name=" restart "; fi
+	echo -e "\a\n\e[31m*******************************************"
+	echo -e "** \e[33mYou have pressed the $name button \e[31m**"
+	echo -e "*******************************************\e[0m"
+	for i in {5..1}; do
+		echo -en "\nPress \e[33m^C\e[0m in the next \e[31m$i\e[0m seconds to cancel"
+		sleep 1s
+	done
+	echo
+	sudo /sbin/$cmdname
 }
 zle -N _key_shutdown
 
@@ -286,17 +297,4 @@ _colorize_mail() {
 		echo -e "$CA$var1$CB$var2\e[0m"
 	done
 }
-_key_shutdown_base() {
-	name=${1:-"shut down"}
-	cmdname=${1:-"poweroff"}
-	if [[ "$name" == "reboot" ]]; then name=" restart "; fi
-	echo -e "\a\n\e[31m*******************************************"
-	echo -e "** \e[33mYou have pressed the $name button \e[31m**"
-	echo -e "*******************************************\e[0m"
-	for i in {5..1}; do
-		echo -en "\nPress \e[33m^C\e[0m in the next \e[31m$i\e[0m seconds to cancel"
-		sleep 1s
-	done
-	echo
-	sudo /sbin/$cmdname
-}
+
